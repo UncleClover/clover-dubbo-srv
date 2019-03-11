@@ -1,0 +1,58 @@
+allprojects{
+	apply plugin : "java"
+	apply plugin : "eclipse"
+	apply plugin : "maven-publish"
+	
+    ext {
+        moduleVersion = "1.0-SNAPSHOT"
+        builtBy = "gradle 2.2"
+        publishUserName = "admin"
+        publishUserPassword = "123456"
+        publishURL = "http://192.168.10.201:60714/nexus/content/repositories/snapshots/"
+        // mavenPublicURL = "http://192.168.10.201:60714/nexus/content/groups/public/"
+        
+        // 阿里私服
+        mavenPublicURL = "http://maven.aliyun.com/nexus/content/groups/public"
+    }
+    
+    compileJava.dependsOn clean
+    sourceCompatibility = 1.7
+    
+    configurations.all {
+    	// 检查远程依赖是否存在更新
+	    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+	    
+	    // 采用动态版本声明的依赖缓存
+	    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+	}
+	
+	// api分组
+	group = "com.clover.dubbo"
+}
+
+subprojects {
+	// 设置编码
+	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+	
+	repositories { maven { url mavenPublicURL } }
+	
+	// 源文件
+	sourceSets {
+        main {
+            java {
+                srcDirs = [
+                        'src/main/java'
+                ]
+            }
+            resources { srcDirs = ['src/main/resources']}
+        }
+        test {
+            java {
+                srcDirs = [
+                        'src/test/java'
+                ]
+            }
+            resources { srcDirs = ['src/test/resources']}
+        }
+    }
+}
