@@ -1,1 +1,1 @@
-include "clover-dubbo-srv-api", "clover-dubbo-srv-core"
+include 'clover-dubbo-srv-api', 'clover-dubbo-srv-core'

@@ -1,0 +1,22 @@
+dependencies {
+	// 依赖maven仓库jar包
+	// compile 'group:name:version'
+	
+	// 依赖本地jar文件夹
+	// compile fileTree(dir, 'libs' ,include : '*.jar')
+	
+	// 依赖本地单个jar文件
+	// compile file('lib/xxx')
+	
+	// 依赖工程
+	// compile project(:xx:xx)
+	
+	compile 'org.springframework:spring-tx:4.1.7.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.1.7.RELEASE'
+    
+	// 测试依赖包
+    testCompile(
+            "org.springframework:spring-test:4.1.7.RELEASE",
+            "junit:junit:4.12"
+    )
+}
