@@ -4,18 +4,19 @@ allprojects{
 	apply plugin : "maven-publish"
 	
     ext {
-    	// ?????
+    	// 
     	profile=project.hasProperty('profile')? (project['profile']==""?"cv-dev":project['profile']) : "cv-dev"
         moduleVersion = "1.0-SNAPSHOT"
         baseVersion = "1.0-SNAPSHOT"
         builtBy = "gradle 2.2"
         publishUserName = "admin"
         publishUserPassword = "123456"
-        publishURL = "http://192.168.10.201:60714/repository/maven-snapshots/"
-        mavenPublicURL = "http://192.168.10.201:60714/repository/maven-public/"
+        publishURL = "http://127.0.0.1:18081/repository/maven-snapshots/"
+        mavenPublicURL = "http://127.0.0.1:18081/repository/maven-public/"
         
         // 阿里私服
         // mavenPublicURL = "http://maven.aliyun.com/nexus/content/groups/public"
+        // maven { url "http://127.0.0.1:18081/repository/maven-public/"} 
     }
     
     compileJava.dependsOn clean
